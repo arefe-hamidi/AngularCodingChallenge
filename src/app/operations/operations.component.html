@@ -1,1 +1,6 @@
-<p>operations works!</p>
+<div>
+  <div *ngFor="let number of numbersData">
+    <div>{{ number.value }} {{ number.action }}</div>
+  </div>
+  <div *ngIf="missingDataErrorStatus">MISSING DATA</div>
+</div>
