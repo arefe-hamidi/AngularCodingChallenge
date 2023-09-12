@@ -1,6 +1,13 @@
-<div>
-  <div *ngFor="let number of numbersData">
-    <div>{{ number.value }} {{ number.action }}</div>
-  </div>
+<div class="container">
   <div *ngIf="missingDataErrorStatus">MISSING DATA</div>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title i18n>Operations</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div *ngFor="let number of numbersData">
+        <div>{{ number.value }} {{ number.action }}</div>
+      </div>
+    </mat-card-content>
+  </mat-card>
 </div>
