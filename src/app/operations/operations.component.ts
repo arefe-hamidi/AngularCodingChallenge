@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BasicSnackbarComponent } from '../basic-snackbar/basic-snackbar.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-operations',
@@ -9,14 +8,13 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class OperationsComponent implements OnInit {
   numbersData: any;
-  numberUrl: string = '/assets/json/number.json';
+  numberUrl: string = '/assets/json/numbers.json';
   addData: any;
   addUrl: string = '/assets/json/add.json';
   multiplyData: any;
   multiplyUrl: string = '/assets/json/multiply.json';
-  serverErrorStatus: boolean = false;
-  missingDataErrorStatus: boolean = false;
-  content: string = '';
+  errorStatus: boolean = false;
+  errorMassege: string = '';
   ngOnInit() {
     this.readNumbersData();
     this.readAddData();
@@ -29,10 +27,9 @@ export class OperationsComponent implements OnInit {
         this.numbersData = res;
       },
       (error) => {
-        this.content = 'Server Error';
+        this.errorMassege = 'Server Error';
         this.showSnackbarDuration();
-        this.serverErrorStatus = true;
-        console.log('Server Error');
+        this.errorStatus = true;
       }
     );
   }
@@ -41,13 +38,15 @@ export class OperationsComponent implements OnInit {
       (res) => {
         this.addData = res;
         if (!this.addData.value) {
-          this.missingDataErrorStatus = true;
+          this.errorStatus = true;
+          this.errorMassege = 'MISSING DATA';
+          this.showSnackbarDuration();
         }
       },
       (error) => {
-        this.missingDataErrorStatus = true;
-        // this._snackBar.open('MISSING DATA', 'Cancel');
-        console.log('MISSING DATA');
+        this.errorStatus = true;
+        this.errorMassege = 'MISSING DATA';
+        this.showSnackbarDuration();
       }
     );
   }
@@ -56,16 +55,19 @@ export class OperationsComponent implements OnInit {
       (res) => {
         this.multiplyData = res;
         if (!this.multiplyData.value) {
-          this.missingDataErrorStatus = true;
+          this.errorStatus = true;
+          this.errorMassege = 'MISSING DATA';
+          this.showSnackbarDuration();
         }
       },
       (error) => {
-        this.missingDataErrorStatus = true;
-        console.log('MISSING DATA');
+        this.errorStatus = true;
+        this.errorMassege = 'MISSING DATA';
+        this.showSnackbarDuration();
       }
     );
   }
   showSnackbarDuration() {
-    this.snackBar.open(this.content, 'Done');
+    this.snackBar.open(this.errorMassege, 'Done');
   }
 }

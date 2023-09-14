@@ -5,17 +5,22 @@
     </mat-card-header>
     <hr />
     <mat-card-content>
-      <div *ngFor="let number of numbersData" class="mt-3">
-        <div class="operations-list">
-          {{ number.value }}
-          {{
-            number.action === "add"
-              ? " + " + addData.value + " = " + (number.value + addData.value)
-              : " * " +
-                multiplyData.value +
-                " = " +
-                number.value * multiplyData.value
-          }}
+      <div *ngIf="errorStatus">
+        <div i18n>Something is Wrong!</div>
+      </div>
+      <div *ngIf="!errorStatus">
+        <div *ngFor="let number of numbersData" class="mt-3">
+          <div class="operations-list">
+            {{ number.value }}
+            {{
+              number.action === "add"
+                ? " + " + addData.value + " = " + (number.value + addData.value)
+                : " * " +
+                  multiplyData.value +
+                  " = " +
+                  number.value * multiplyData.value
+            }}
+          </div>
         </div>
       </div>
     </mat-card-content>

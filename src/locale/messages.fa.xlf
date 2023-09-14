@@ -16,6 +16,13 @@
           <context context-type="linenumber">5</context>
         </context-group>
       </trans-unit>
+       <trans-unit id="5279524726956237234" datatype="html">
+        <source>مشکلی اتفاق افتاده است !</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/operations/operations.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>ƒ
     </body>
   </file>
 </xliff>
