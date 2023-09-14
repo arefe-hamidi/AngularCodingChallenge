@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+// import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-operations',
   templateUrl: './operations.component.html',
   styleUrls: ['./operations.component.css'],
+  // standalone: true,
+  // imports: [MatSnackBarModule],
 })
 export class OperationsComponent implements OnInit {
   numbersData: any;
@@ -14,12 +17,12 @@ export class OperationsComponent implements OnInit {
   multiplyUrl: string = '/assets/json/multiply.json';
   serverErrorStatus: boolean = false;
   missingDataErrorStatus: boolean = false;
-  constructor(private http: HttpClient) {}
   ngOnInit() {
     this.readNumbersData();
     this.readAddData();
     this.readMultiplyData();
   }
+  constructor(private http: HttpClient) {}
   readNumbersData() {
     this.http.get(this.numberUrl).subscribe(
       (res) => {
@@ -41,6 +44,7 @@ export class OperationsComponent implements OnInit {
       },
       (error) => {
         this.missingDataErrorStatus = true;
+        // this._snackBar.open('MISSING DATA', 'Cancel');
         console.log('MISSING DATA');
       }
     );

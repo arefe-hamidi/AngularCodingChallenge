@@ -1,12 +1,22 @@
 <div class="container">
-  <div *ngIf="missingDataErrorStatus">MISSING DATA</div>
   <mat-card>
     <mat-card-header>
       <mat-card-title i18n>Operations</mat-card-title>
     </mat-card-header>
+    <hr />
     <mat-card-content>
-      <div *ngFor="let number of numbersData">
-        <div>{{ number.value }} {{ number.action }}</div>
+      <div *ngFor="let number of numbersData" class="mt-3">
+        <div class="operations-list">
+          {{ number.value }}
+          {{
+            number.action === "add"
+              ? " + " + addData.value + " = " + (number.value + addData.value)
+              : " * " +
+                multiplyData.value +
+                " = " +
+                number.value * multiplyData.value
+          }}
+        </div>
       </div>
     </mat-card-content>
   </mat-card>
