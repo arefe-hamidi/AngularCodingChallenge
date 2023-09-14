@@ -5,20 +5,23 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './header/header.component';
 import { OperationsComponent } from './operations/operations.component';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatCardModule } from '@angular/material/card';
+import { BasicSnackbarComponent } from './basic-snackbar/basic-snackbar.component';
+import { MaterialModule } from './material.module';
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, OperationsComponent],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    OperationsComponent,
+    BasicSnackbarComponent,
+  ],
   imports: [
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatToolbarModule,
-    MatCardModule,
+    MaterialModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
+  exports: [BasicSnackbarComponent],
 })
-export class AppModule {
-  
-}
+export class AppModule {}
