@@ -15,16 +15,18 @@ export class OperationsComponent implements OnInit {
   multiplyUrl: string = '/assets/json/multiply.json';
   errorStatus: boolean = false;
   errorMassege: string = '';
+  result: any;
   ngOnInit() {
-    this.readNumbersData();
     this.readAddData();
     this.readMultiplyData();
+    this.readNumbersData();
   }
   constructor(private http: HttpClient, private snackBar: MatSnackBar) {}
   readNumbersData() {
     this.http.get(this.numberUrl).subscribe(
       (res) => {
         this.numbersData = res;
+        this.computResult();
       },
       (error) => {
         this.errorMassege = 'Server Error';
@@ -69,5 +71,21 @@ export class OperationsComponent implements OnInit {
   }
   showSnackbarDuration() {
     this.snackBar.open(this.errorMassege, 'Done');
+  }
+  computResult() {
+    this.result = [];
+    this.numbersData.forEach((element: any) => {
+      if (element.action === 'add') {
+        this.result.push({
+          ...element,
+          result: element.value + this.addData.value,
+        });
+      } else {
+        this.result.push({
+          ...element,
+          result: element.value * this.multiplyData.value,
+        });
+      }
+    });
   }
 }
