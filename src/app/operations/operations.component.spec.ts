@@ -28,7 +28,7 @@ describe('OperationsComponent', () => {
     }).compileComponents();
   }));
 
-  it('get json file and return results', () => {
+  it('get json files and return results', () => {
     fixture = TestBed.createComponent(OperationsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
